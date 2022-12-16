@@ -30,12 +30,18 @@ import './Board.css';
  **/
 
 class Board extends Component {
-
-  constructor(props) {
-    super(props);
-
-    // TODO: set initial state
-  }
+    static defaultProps = {
+        rows: 5,
+        cols: 5,
+        chanceOn: 0.25
+    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            hasWon: false,
+            board: this.createBoard()
+        };
+  };
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
 
@@ -48,7 +54,7 @@ class Board extends Component {
   /** handle changing a cell: update board & determine if winner */
 
   flipCellsAround(coord) {
-    let {ncols, nrows} = this.props;
+    let {cols, rows} = this.props;
     let board = this.state.board;
     let [y, x] = coord.split("-").map(Number);
     let hasWon;
@@ -57,7 +63,7 @@ class Board extends Component {
     function flipCell(y, x) {
       // if this coord is actually on board, flip it
 
-      if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
+      if (x >= 0 && x < cols && y >= 0 && y < rows) {
         board[y][x] = !board[y][x];
       }
     }
@@ -75,7 +81,7 @@ class Board extends Component {
 
   render() {
     return (
-        <table>
+        <table className="Board">
             <tbody>
                 <tr>
                     <Cell isLit={true} />
