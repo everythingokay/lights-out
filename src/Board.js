@@ -45,11 +45,19 @@ class Board extends Component {
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
 
-  createBoard() {
-    let board = [];
-    // TODO: create array-of-arrays of true/false values
+    createBoard() {
+        let board = [];
+
+        for (let y = 0; y < this.props.rows; y++) {
+            let row = [];
+            for (let x = 0; x < this.props.cols; x++) {
+                row.push(Math.random() < this.props.chanceOn)
+            }
+            board.push(row);
+        };
+
     return board
-  }
+    }
 
   /** handle changing a cell: update board & determine if winner */
 
