@@ -94,6 +94,7 @@ class Board extends Component {
         for (let x = 0; x < this.props.cols; x++) {
             row.push(<Cell isLit={this.state.board[y][x]}/>)
         };
+        tableBoard.push(<tr>{row}</tr>)
     };
     return (
         <table className="Board">
