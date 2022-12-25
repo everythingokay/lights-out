@@ -52,12 +52,12 @@ class Board extends Component {
             let row = [];
             for (let x = 0; x < this.props.cols; x++) {
                 row.push(Math.random() < this.props.chanceOn)
-            }
+            };
             board.push(row);
         };
 
     return board
-    }
+    };
 
   /** handle changing a cell: update board & determine if winner */
 
@@ -73,8 +73,8 @@ class Board extends Component {
 
       if (x >= 0 && x < cols && y >= 0 && y < rows) {
         board[y][x] = !board[y][x];
-      }
-    }
+      };
+    };
 
     // TODO: flip this cell and the cells around it
 
@@ -82,7 +82,7 @@ class Board extends Component {
     // TODO: determine is the game has been won
 
     this.setState({board, hasWon});
-  }
+  };
 
 
   /** Render game board or winning message. */
@@ -93,8 +93,8 @@ class Board extends Component {
         let row = [];
         for (let x = 0; x < this.props.cols; x++) {
             row.push(<Cell isLit={this.state.board[y][x]}/>)
-        }
-    }
+        };
+    };
     return (
         <table className="Board">
             <tbody>
@@ -103,7 +103,7 @@ class Board extends Component {
         </table>
     )
   };
-}
+};
 
 
 export default Board;
