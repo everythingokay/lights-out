@@ -65,13 +65,15 @@ class Board extends Component {
     let hasWon;
 
     function flipCell(y, x) {
-      if (x >= 0 && x < cols && y >= 0 && y < rows) {
+        if (x >= 0 && x < cols && y >= 0 && y < rows) {
         board[y][x] = !board[y][x];
-      };
+        };
     };
     flipCell(x, y);
 
-    this.setState({board, hasWon});
+    // let hasWon = false;
+
+    this.setState({ board: board, hasWon: hasWon });
     };
 
     render() {
