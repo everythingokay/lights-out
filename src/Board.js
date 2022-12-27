@@ -62,6 +62,7 @@ class Board extends Component {
   /** handle changing a cell: update board & determine if winner */
 
   flipCellsAround(coord) {
+    console.log("FLIPPING")
     let {cols, rows} = this.props;
     let board = this.state.board;
     let [y, x] = coord.split("-").map(Number);
@@ -93,7 +94,11 @@ class Board extends Component {
         let row = [];
         for (let x = 0; x < this.props.cols; x++) {
             let coord = `${y}-${x}`;
-            row.push(<Cell key={coord} isLit={this.state.board[y][x]}/>)
+            row.push(<Cell 
+                key={coord} 
+                isLit={this.state.board[y][x]} 
+                flipCellsAroundMe={() => this.flipCellsAround(coord)}
+                />)
         };
         tableBoard.push(<tr>{row}</tr>)
     };
