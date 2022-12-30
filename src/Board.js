@@ -57,48 +57,47 @@ class Board extends Component {
     return board
     };
 
-  flipCellsAround(coord) {
-    console.log("FLIPPING", coord)
-    let {cols, rows} = this.props;
-    let board = this.state.board;
-    let [y, x] = coord.split("-").map(Number);
-    let hasWon;
+    flipCellsAround(coord) {
+        console.log("FLIPPING", coord)
+        let {cols, rows} = this.props;
+        let board = this.state.board;
+        let [y, x] = coord.split("-").map(Number);
+        // let hasWon;
 
-    function flipCell(y, x) {
-        if (x >= 0 && x < cols && y >= 0 && y < rows) {
-        board[y][x] = !board[y][x];
+        function flipCell(y, x) {
+            if (x >= 0 && x < cols && y >= 0 && y < rows) {
+                board[y][x] = !board[y][x];
+                };
         };
-    };
-    flipCell(x, y);
+        flipCell(y, x);
 
-    // let hasWon = false;
+        let hasWon = false;
 
-    this.setState({ board: board, hasWon: hasWon });
+        this.setState({ board: board, hasWon: hasWon });
     };
 
     render() {
-    let tableBoard = [];
-        for (let y = 0; y < this.props.rows; y++) {
-            let row = [];
-            for (let x = 0; x < this.props.cols; x++) {
-                let coord = `${y}-${x}`;
-                row.push(<Cell 
-                    key={coord} 
-                    isLit={this.state.board[y][x]} 
-                    flipCellsAroundMe={() => this.flipCellsAround(coord)}
-                    />)
+        let tableBoard = [];
+            for (let y = 0; y < this.props.rows; y++) {
+                let row = [];
+                for (let x = 0; x < this.props.cols; x++) {
+                    let coord = `${y}-${x}`;
+                    row.push(<Cell 
+                        key={coord} 
+                        isLit={this.state.board[y][x]} 
+                        flipCellsAroundMe={() => this.flipCellsAround(coord)}
+                        />)
+                };
+                tableBoard.push(<tr key={y}>{row}</tr>)
             };
-            tableBoard.push(<tr>{row}</tr>)
-        };
-    return (
-        <table className="Board">
-            <tbody>
-                <tr>{tableBoard}</tr>
-            </tbody>
-        </table>
-    )
+        return (
+            <table className="Board">
+                <tbody>
+                    <tr>{tableBoard}</tr>
+                </tbody>
+            </table>
+        )
     };
 };
-
 
 export default Board;

@@ -21,8 +21,7 @@ class Cell extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(evt) {
-    // call up to the board to flip cells around this cell
+    handleClick(evt) {
     this.props.flipCellsAroundMe();
   }
 
@@ -35,5 +34,4 @@ class Cell extends Component {
   }
 }
 
-
-export default Cell
+export default Cell;
