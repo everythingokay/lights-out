@@ -62,7 +62,6 @@ class Board extends Component {
         let {cols, rows} = this.props;
         let board = this.state.board;
         let [y, x] = coord.split("-").map(Number);
-        // let hasWon;
 
         function flipCell(y, x) {
             if (x >= 0 && x < cols && y >= 0 && y < rows) {
@@ -70,6 +69,10 @@ class Board extends Component {
                 };
         };
         flipCell(y, x);
+        flipCell(y, x-1);
+        flipCell(y, x+1);
+        flipCell(y-1, x);
+        flipCell(y+1, x);
 
         let hasWon = false;
 
