@@ -52,16 +52,7 @@ class Board extends Component {
         this.setState({ board: board, hasWon: hasWon });
     };
 
-    render() {
-        if (this.state.hasWon) {
-            <div className="Board-title">
-                <div className="winner">
-                    <span className="neon-orange">YOU</span>
-                    <span className="neon-blue">WIN!</span>
-                </div>
-            </div>
-        };
-
+    makeTable() {
         let tableBoard = [];
             for (let y = 0; y < this.props.rows; y++) {
                 let row = [];
@@ -76,17 +67,30 @@ class Board extends Component {
                 tableBoard.push(<tr key={y}>{row}</tr>)
             };
         return (
+            <table className='Board'>
+                <tbody>{tableBoard}</tbody>
+            </table>
+        )
+    }
+
+    render() {
+        return (
             <div>
-                <div className="Board-title">
-                    <div className="neon-orange">LIGHTS</div>
-                    <div className="neon-blue">OUT</div>
+            {this.state.hasWon ? (
+              <div className='winner'>
+                <span className='neon-orange'>YOU</span>
+                <span className='neon-blue'>WIN!</span>
+              </div>
+            ) : (
+              <div>
+                <div className='Board-title'>
+                  <div className='neon-orange'>Lights</div>
+                  <div className='neon-blue'>Out</div>
                 </div>
-                <table className="Board">
-                    <tbody>
-                        <tr>{tableBoard}</tr>
-                    </tbody>
-                </table>
-            </div>
+                {this.makeTable()}
+              </div>
+            )}
+          </div>
         )
     };
 };
